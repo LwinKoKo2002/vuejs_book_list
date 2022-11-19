@@ -6,10 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Document</title>
+    <style>
+      .display-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .d-flex {
+        display: flex;
+        margin: 20px;
+      }
+      .book-info {
+        margin-left: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        background-color: green;
+        color: whitesmoke;
+      }
+      .success {
+        background-color: crimson;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
       <h2>Vue Js Book List</h2>
+      <div v-for="book in books">
+        <div class="d-flex">
+          <img :src="book.img" alt="" />
+          <div class="book-info">
+            <p>Book title is - {{book.title}}</p>
+            <p>Author is -{{book.author}}</p>
+            <p>Price is -{{book.price}}</p>
+            <button
+              :class="{success:book.isFavorite}"
+              @click="book.isFavorite=!book.isFavorite"
+            >
+              <span v-if="book.isFavorite">Unfavorite</span>
+              <span v-if="!book.isFavorite">Favorite</span>
+            </button>
+          </div>
+        </div>
+        <hr />
+      </div>
     </div>
 
     <script src="vue.js"></script>
